@@ -2,12 +2,24 @@ import styles from "./styles.module.css";
 import Title from "../Title/index.jsx";
 import ProfileSection from "../Profile/ProfileSection/index";
 import LinkButton from "../LinkButton/index";
+import { useState } from "react";
 
 export default function Profile(props) {
-  function handleClick(event) {
-    console.log(event);
+  // [valor, funcaoModificadora]
+  const [followText, setFollowText] = useState("Follow");
 
-    alert("Voce agora esta seguindo");
+  function handleClick(event) {
+    if ("Follow" === followText) {
+      alert("Voce agora esta seguindo");
+      setFollowText("Following");
+
+      return;
+    }
+
+    if ("Following" === followText) {
+      alert("Voce deixeou de seguir");
+      setFollowText("Follow");
+    }
   }
 
   return (
@@ -16,7 +28,7 @@ export default function Profile(props) {
       <Title>
         <span>{props.name}</span>
         <button className={styles.followButton} onClick={handleClick}>
-          Follow
+          {followText}
         </button>
       </Title>
       <ProfileSection>{props.bio}</ProfileSection>
