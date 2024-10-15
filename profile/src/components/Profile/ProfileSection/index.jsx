@@ -1,10 +1,9 @@
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 
 export default function ProfileSection(props) {
-
-  return(
-    <div>
+  return (
+    <div {...props} className={`${styles.wrapper} ${props.className}`}>
       {props.children}
     </div>
-  )
+  );
 }
